@@ -1,1 +1,1 @@
-Aqui estão reunidos os códigos dosdesafios propostos
+Aqui estão reunidos os códigos dos desafios propostos
