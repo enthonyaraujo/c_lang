@@ -9,13 +9,6 @@ output/
 *.so
 *.dylib
 
-# Ignora qualquer executável compilado nas pastas src, preservando códigos e headers
-**/src/*
-!**/src/*/
-!**/src/**/*.c
-!**/src/**/*.h
-!**/src/**/.gitkeep
-
 # VS Code
 .vscode/launch.json
 .vscode/*.log
