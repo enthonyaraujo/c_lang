@@ -1,0 +1,154 @@
+<!-- Configuração de Tema Dark / White -->
+<script>
+  (function() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
+
+<style>
+  /* Variáveis de Tema */
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #24292f;
+    --heading-color: #1f2328;
+    --link-color: #0969da;
+    --border-color: #d0d7de;
+    --code-bg: #f6f8fa;
+    --table-header-bg: #f6f8fa;
+    --table-row-alt: #f6f8fa;
+    --btn-bg: #f6f8fa;
+    --btn-border: #d0d7de;
+    --btn-text: #24292f;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --heading-color: #f0f6fc;
+    --link-color: #58a6ff;
+    --border-color: #30363d;
+    --code-bg: #161b22;
+    --table-header-bg: #161b22;
+    --table-row-alt: #161b22;
+    --btn-bg: #21262d;
+    --btn-border: #363b42;
+    --btn-text: #f0f6fc;
+  }
+
+  body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .markdown-body {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+  }
+
+  .markdown-body h1,
+  .markdown-body h2,
+  .markdown-body h3,
+  .markdown-body h4,
+  .markdown-body h5,
+  .markdown-body h6 {
+    color: var(--heading-color) !important;
+    border-bottom-color: var(--border-color) !important;
+  }
+
+  .markdown-body a {
+    color: var(--link-color) !important;
+  }
+
+  .markdown-body hr {
+    background-color: var(--border-color) !important;
+    border-color: var(--border-color) !important;
+  }
+
+  .markdown-body pre,
+  .markdown-body code {
+    background-color: var(--code-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+  }
+
+  .markdown-body table th,
+  .markdown-body table td {
+    border-color: var(--border-color) !important;
+  }
+
+  .markdown-body table th {
+    background-color: var(--table-header-bg) !important;
+  }
+
+  .markdown-body table tr:nth-child(2n) {
+    background-color: var(--table-row-alt) !important;
+  }
+
+  .markdown-body blockquote {
+    color: var(--text-color) !important;
+    border-left-color: var(--border-color) !important;
+    opacity: 0.85;
+  }
+
+  /* Botão de Alternar Modo Dark / Light */
+  #theme-toggle-btn {
+    position: fixed;
+    top: 18px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--btn-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+  }
+
+  #theme-toggle-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.createElement('button');
+    btn.id = 'theme-toggle-btn';
+    btn.setAttribute('aria-label', 'Alternar modo escuro e claro');
+    
+    function updateButton() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        btn.innerHTML = '☀️ Modo Claro';
+      } else {
+        btn.innerHTML = '🌙 Modo Escuro';
+      }
+    }
+
+    btn.addEventListener('click', function() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+      updateButton();
+    });
+
+    updateButton();
+    document.body.appendChild(btn);
+  });
+</script>

@@ -1,0 +1,7 @@
+title: Linguagem C
+description: Trilha de estudos, anotações teóricas e desafios práticos em C
+theme: jekyll-theme-primer
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
