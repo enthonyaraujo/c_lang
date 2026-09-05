@@ -20,7 +20,10 @@
     --link-color: #0969da;
     --border-color: #d0d7de;
     --code-bg: #f6f8fa;
+    --inline-code-bg: rgba(175, 184, 193, 0.2);
+    --code-text: #24292f;
     --table-header-bg: #f6f8fa;
+    --table-row-bg: #ffffff;
     --table-row-alt: #f6f8fa;
     --btn-bg: #f6f8fa;
     --btn-border: #d0d7de;
@@ -34,22 +37,34 @@
     --link-color: #58a6ff;
     --border-color: #30363d;
     --code-bg: #161b22;
+    --inline-code-bg: rgba(110, 118, 129, 0.4);
+    --code-text: #e6edf3;
     --table-header-bg: #161b22;
+    --table-row-bg: #0d1117;
     --table-row-alt: #161b22;
     --btn-bg: #21262d;
     --btn-border: #363b42;
     --btn-text: #f0f6fc;
   }
 
-  body {
+  html, body {
     background-color: var(--bg-color) !important;
     color: var(--text-color) !important;
-    transition: background-color 0.25s ease, color 0.25s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .markdown-body {
     background-color: transparent !important;
     color: var(--text-color) !important;
+  }
+
+  /* Título principal do cabeçalho */
+  .markdown-body > h1:first-child a {
+    color: var(--heading-color) !important;
+    text-decoration: none;
+  }
+  .markdown-body > h1:first-child a:hover {
+    text-decoration: underline;
   }
 
   .markdown-body h1,
@@ -71,31 +86,107 @@
     border-color: var(--border-color) !important;
   }
 
-  .markdown-body pre,
-  .markdown-body code {
-    background-color: var(--code-bg) !important;
-    color: var(--text-color) !important;
-    border-color: var(--border-color) !important;
-  }
-
-  .markdown-body table th,
-  .markdown-body table td {
-    border-color: var(--border-color) !important;
+  /* Tabelas */
+  .markdown-body table {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
   }
 
   .markdown-body table th {
     background-color: var(--table-header-bg) !important;
+    color: var(--heading-color) !important;
+    font-weight: 600 !important;
+    border: 1px solid var(--border-color) !important;
+  }
+
+  .markdown-body table tr {
+    background-color: var(--table-row-bg) !important;
+    border-top: 1px solid var(--border-color) !important;
   }
 
   .markdown-body table tr:nth-child(2n) {
     background-color: var(--table-row-alt) !important;
   }
 
+  .markdown-body table td {
+    background-color: inherit !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+  }
+
+  /* Código Inline e Blocos de Código */
+  .markdown-body code {
+    background-color: var(--inline-code-bg) !important;
+    color: var(--code-text) !important;
+    padding: 0.2em 0.4em !important;
+    border-radius: 6px !important;
+  }
+
+  .markdown-body pre {
+    background-color: var(--code-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+  }
+
+  .markdown-body pre code {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+    padding: 0 !important;
+  }
+
   .markdown-body blockquote {
     color: var(--text-color) !important;
-    border-left-color: var(--border-color) !important;
-    opacity: 0.85;
+    border-left: 4px solid var(--border-color) !important;
+    opacity: 0.9;
   }
+
+  /* Syntax Highlighting no Modo Escuro (GitHub Dark / Rouge) */
+  [data-theme="dark"] .highlight .c,
+  [data-theme="dark"] .highlight .c1,
+  [data-theme="dark"] .highlight .ch,
+  [data-theme="dark"] .highlight .cm { color: #8b949e !important; font-style: italic; }
+  [data-theme="dark"] .highlight .k,
+  [data-theme="dark"] .highlight .kd,
+  [data-theme="dark"] .highlight .kn,
+  [data-theme="dark"] .highlight .kp,
+  [data-theme="dark"] .highlight .kr,
+  [data-theme="dark"] .highlight .kt { color: #ff7b72 !important; font-weight: bold; }
+  [data-theme="dark"] .highlight .s,
+  [data-theme="dark"] .highlight .s1,
+  [data-theme="dark"] .highlight .s2,
+  [data-theme="dark"] .highlight .sc,
+  [data-theme="dark"] .highlight .sd,
+  [data-theme="dark"] .highlight .se,
+  [data-theme="dark"] .highlight .sh,
+  [data-theme="dark"] .highlight .si,
+  [data-theme="dark"] .highlight .sx,
+  [data-theme="dark"] .highlight .sr,
+  [data-theme="dark"] .highlight .ss { color: #a5d6ff !important; }
+  [data-theme="dark"] .highlight .m,
+  [data-theme="dark"] .highlight .mf,
+  [data-theme="dark"] .highlight .mh,
+  [data-theme="dark"] .highlight .mi,
+  [data-theme="dark"] .highlight .il,
+  [data-theme="dark"] .highlight .mo { color: #79c0ff !important; }
+  [data-theme="dark"] .highlight .nf,
+  [data-theme="dark"] .highlight .fm { color: #d2a8ff !important; font-weight: bold; }
+  [data-theme="dark"] .highlight .o,
+  [data-theme="dark"] .highlight .ow { color: #ff7b72 !important; }
+  [data-theme="dark"] .highlight .cp,
+  [data-theme="dark"] .highlight .cpf,
+  [data-theme="dark"] .highlight .cs { color: #ff7b72 !important; font-weight: bold; }
+  [data-theme="dark"] .highlight .nv,
+  [data-theme="dark"] .highlight .vc,
+  [data-theme="dark"] .highlight .vg,
+  [data-theme="dark"] .highlight .vi,
+  [data-theme="dark"] .highlight .na,
+  [data-theme="dark"] .highlight .nc,
+  [data-theme="dark"] .highlight .no,
+  [data-theme="dark"] .highlight .nd { color: #ffa657 !important; }
+  [data-theme="dark"] .highlight .p { color: #c9d1d9 !important; }
 
   /* Botão de Alternar Modo Dark / Light */
   #theme-toggle-btn {
@@ -115,13 +206,22 @@
     background-color: var(--btn-bg);
     color: var(--btn-text);
     border: 1px solid var(--btn-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     transition: all 0.2s ease;
   }
 
   #theme-toggle-btn:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  @media (max-width: 600px) {
+    #theme-toggle-btn {
+      top: 12px;
+      right: 12px;
+      padding: 6px 10px;
+      font-size: 11px;
+    }
   }
 </style>
 
@@ -152,4 +252,3 @@
     document.body.appendChild(btn);
   });
 </script>
-
