@@ -1,0 +1,31 @@
+# Compilação C e Binários
+bin/
+build/
+output/
+*.out
+*.exe
+*.o
+*.a
+*.so
+*.dylib
+
+# Ignora qualquer executável compilado nas pastas src, preservando códigos e headers
+**/src/*
+!**/src/*/
+!**/src/**/*.c
+!**/src/**/*.h
+!**/src/**/.gitkeep
+
+# VS Code
+.vscode/launch.json
+.vscode/*.log
+
+# Obsidian (preserva configurações, ignora abas abertas e cache)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
