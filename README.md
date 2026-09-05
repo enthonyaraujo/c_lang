@@ -1,6 +1,6 @@
-# Trilha de Estudos: Linguagem C (C17 / C23)
+Linguagem C
 
-Repositório estruturado para o aprendizado prático e teórico da linguagem C moderna, projetado para funcionar perfeitamente tanto como **laboratório de código** (VS Code, GCC, Make) quanto como **base de conhecimento interligada no Obsidian**.
+Repositório estruturado para o aprendizado prático e teórico da linguagem C
 
 ---
 ##  Mapa de Aprendizado
