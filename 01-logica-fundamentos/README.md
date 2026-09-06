@@ -267,10 +267,16 @@ bool verificar_aprovacao(float media) {
 ```
 
 ---
-Próximo Capitulo: [[02-estruturas-de-dados-1/README|README]]
+
 ## Desafios Práticos
 
 Pratique a depuração de erros sutis de lógica e escopo:
 - 📌 [Acessar Desafios de Lógica de Programação](desafios/README.md)
 - 💻 Códigos-fonte e soluções disponíveis em [`src/`](src/)
+
+<div class="chapter-nav">
+  <div class="chapter-nav-prev"></div>
+  <a href="#" class="chapter-nav-top">↑ De volta ao topo</a>
+  <div class="chapter-nav-next">[[02-estruturas-de-dados-1/README|02. Estruturas de dados 1 →]]</div>
+</div>
 
