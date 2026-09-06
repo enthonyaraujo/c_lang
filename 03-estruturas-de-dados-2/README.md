@@ -252,6 +252,115 @@ flowchart TD
     classDef default fill:#ffffff,stroke:#333333,stroke-width:1.5px,color:#000000,font-weight:bold;
     linkStyle default stroke:#888888,stroke-width:1.2px;
 ```
+
+### 2.3 Implementação em C
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// estrutura do nó
+typedef struct node
+{
+    int data; // dado
+    struct node *left; // nó apontando para o filho a esquerda
+    struct node *right; // nó apontando para o filho a direita
+} Node;
+
+// função para criar um nó
+Node *create_node(int key){
+    Node *new_node = malloc(sizeof(Node)); // alocando memoria para o nó
+    new_node->data = key; // o dado recebe a key
+    new_node->left = new_node->right = NULL; // como não tem filhos, os filhos são NULL
+
+    return new_node;
+}
+
+int main(){
+    Node *root = create_node(30); // raiz
+
+    root->left = create_node(10);        // filho à esquerda da raiz
+    root->right = create_node(5);         // filho à direita da raiz
+    root->right->left = create_node(1);   // filho à esquerda de 5
+    root->right->right = create_node(2);  // filho à direita de 5
+
+    // chamada da função para imprimir a árvore
+    printTree(root);
+
+    return 0;
+}
+
+// ================================================
+// == As funções aqui abaixo não são importantes ==
+// ==     são apenas para mostrar as árvores     ==
+//=================================================
+
+// calcula quantos níveis a árvore possui
+int treeHeight(Node *root) {
+    if (root == NULL) return 0;
+
+    int leftHeight = treeHeight(root->left);
+    int rightHeight = treeHeight(root->right);
+
+    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
+}
+
+// posiciona cada nó e suas arestas dentro da matriz de caracteres
+void printTreeRec(Node *root, char **canvas, int width, int x, int y, int offset) {
+    if (root == NULL) return;
+
+    char value[32];
+    snprintf(value, sizeof(value), "%d", root->data);
+
+    // imprime o nó atual com a indentação do nivel
+    int start = x - (int)strlen(value) / 2;
+    for (int i = 0; value[i] != '\0' && start + i < width; i++) {
+        if (start + i >= 0) canvas[y][start + i] = value[i];
+    }
+
+    int nextOffset = offset / 2;
+    if (nextOffset < 2) nextOffset = 2;
+
+    // visita a subarvore direita primeiro
+    if (root->right != NULL) {
+        canvas[y + 1][x + offset / 2] = '\\';
+        printTreeRec(root->right, canvas, width, x + offset, y + 2, nextOffset);
+    }
+
+    /// visita a subarvore esquerda
+    if (root->left != NULL) {
+        canvas[y + 1][x - offset / 2] = '/';
+        printTreeRec(root->left, canvas, width, x - offset, y + 2, nextOffset);
+    }
+}
+
+void printTree(Node *root) {
+    if (root == NULL) return;
+
+    int height = treeHeight(root);
+    int width = 1 << (height + 2);
+    int rows = height * 2 - 1;
+
+    char **canvas = malloc(rows * sizeof(char *));
+    for (int i = 0; i < rows; i++) {
+        canvas[i] = malloc((width + 1) * sizeof(char));
+        memset(canvas[i], ' ', width);
+        canvas[i][width] = '\0';
+    }
+
+    printTreeRec(root, canvas, width, width / 2, 0, width / 4);
+
+    for (int i = 0; i < rows; i++) {
+        int end = width - 1;
+        while (end >= 0 && canvas[i][end] == ' ') end--;
+        canvas[i][end + 1] = '\0';
+        printf("%s\n", canvas[i]);
+        free(canvas[i]);
+    }
+    free(canvas);
+}
+```
+
 ## 3 Percursos
 Existem dois tipos de percursos:
 - Percurso em Largura
@@ -336,3 +445,30 @@ flowchart TD
 ```
 Percurso: **D, E, B, C, A**
 
+#### 3.2.4 Implementação em C 
+
+```c
+void pre_order(Node *root) {
+    if (root != NULL) {
+        printf("%d ", root->key);
+        pre_order(root->left);
+        pre_order(root->right);
+    }
+}
+
+void in_order(Node *root) {
+    if (root != NULL) {
+        in_order(root->left);
+        printf("%d ", root->key);
+        in_order(root->right);
+    }
+}
+
+void pos_order(Node *root) {
+    if (root != NULL) {
+        pos_order(root->left);
+        pos_order(root->right);
+        printf("%d ", root->key);
+    }
+}
+```
