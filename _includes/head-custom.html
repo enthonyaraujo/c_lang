@@ -348,6 +348,109 @@
   .mermaid-container .mermaid {
     background: transparent !important;
   }
+
+  /* Barra de Navegação entre Capítulos (Footer de Paginação) */
+  .chapter-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.95rem;
+  }
+
+  .chapter-nav-prev,
+  .chapter-nav-next {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .chapter-nav-prev {
+    justify-content: flex-start;
+  }
+
+  .chapter-nav-next {
+    justify-content: flex-end;
+  }
+
+  .chapter-nav-prev a,
+  .chapter-nav-next a,
+  .chapter-nav-prev .obsidian-link,
+  .chapter-nav-next .obsidian-link {
+    color: var(--text-color) !important;
+    opacity: 0.85;
+    text-decoration: none !important;
+    font-weight: 500;
+    transition: color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .chapter-nav-prev a:hover,
+  .chapter-nav-next a:hover,
+  .chapter-nav-prev .obsidian-link:hover,
+  .chapter-nav-next .obsidian-link:hover {
+    color: var(--link-color) !important;
+    opacity: 1;
+  }
+
+  .chapter-nav-prev a:hover,
+  .chapter-nav-prev .obsidian-link:hover {
+    transform: translateX(-3px);
+  }
+
+  .chapter-nav-next a:hover,
+  .chapter-nav-next .obsidian-link:hover {
+    transform: translateX(3px);
+  }
+
+  .chapter-nav-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-color) !important;
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, color 0.15s ease;
+    cursor: pointer;
+    min-height: 34px;
+  }
+
+  .chapter-nav-top:hover {
+    background-color: var(--inline-code-bg);
+    border-color: var(--link-color);
+    color: var(--link-color) !important;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 680px) {
+    .chapter-nav {
+      flex-direction: column;
+      gap: 0.85rem;
+      text-align: center;
+    }
+    .chapter-nav-prev,
+    .chapter-nav-next {
+      justify-content: center;
+      width: 100%;
+    }
+    .chapter-nav-top {
+      order: 3;
+      margin-top: 0.5rem;
+    }
+  }
 </style>
 
 <!-- KaTeX para renderização de fórmulas matemáticas $...$ e $$...$$ -->
@@ -452,8 +555,18 @@
           if (href.endsWith('.md')) {
             href = href.replace(/\.md$/, '');
           }
-          if (!href.startsWith('http') && !href.startsWith('/') && !href.startsWith('.')) {
-            href = href + '/';
+          if (href.endsWith('/README')) {
+            href = href.replace(/\/README$/, '');
+          } else if (href === 'README') {
+            href = '';
+          }
+          if (!href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+            const siteBase = '{{ "/" | relative_url }}' || '/';
+            const cleanBase = siteBase.endsWith('/') ? siteBase : siteBase + '/';
+            href = cleanBase + href.replace(/^\//, '');
+            if (href !== '/' && !href.endsWith('/') && !href.includes('#')) {
+              href = href + '/';
+            }
           }
           a.href = href;
           a.textContent = label;
@@ -534,5 +647,13 @@
         localStorage.setItem('theme', nextTheme);
       });
     }
+
+    // 4. Botão de volta ao topo
+    document.querySelectorAll('.chapter-nav-top').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
   });
 </script>
