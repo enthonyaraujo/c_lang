@@ -581,3 +581,6 @@ int main(void) {
     return 0;
 }
 ```
+
+---
+Próximo Capítulo:  [[03-estruturas-de-dados-2/README|README]]
