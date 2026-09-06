@@ -21,3 +21,8 @@ Coleção de desafios de depuração em C. Cada um deles contém **erros sutis d
 - [Desafio 3 - O Painel do Motorista Confuso](desafio-03-painel-motorista.md)
 - [Desafio 4 - O Desconto Invisível (Funções e Escopo)](desafio-04-desconto-invisivel.md)
 
+<div class="chapter-nav">
+  <div class="chapter-nav-prev">[[01-logica-fundamentos/README|← 01. Fundamentos e Lógica]]</div>
+  <a href="#" class="chapter-nav-top">↑ De volta ao topo</a>
+  <div class="chapter-nav-next">[[02-estruturas-de-dados-1/README|02. Estruturas de dados 1 →]]</div>
+</div>
