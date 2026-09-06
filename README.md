@@ -1,4 +1,4 @@
-Anotações e práticas das disciplinas de Algoritmos, Programação e Estruturas de Dados (1 e 2) do curso de Engenharia de Computação da UFERSA — Campus Pau dos Ferros.
+Anotações e práticas das disciplinas de Algoritmos e Programação e Estruturas de Dados (1 e 2) do curso de Engenharia de Computação da UFERSA — Campus Pau dos Ferros.
 
 ---
 
