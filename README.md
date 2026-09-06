@@ -1,4 +1,4 @@
-Repositório estruturado para o aprendizado prático e teórico da linguagem C moderna (C17 / C23).
+Repositório estruturado para o aprendizado da linguagem C.
 
 ---
 ##  Mapa de Aprendizado
