@@ -10,10 +10,9 @@ output/
 *.dylib
 
 # VS Code
-.vscode/launch.json
-.vscode/*.log
+.vscode/
 
-# Obsidian (preserva configurações, ignora abas abertas e cache)
+# Obsidian
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .obsidian/cache/
