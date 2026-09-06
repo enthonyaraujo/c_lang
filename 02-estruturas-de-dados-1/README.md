@@ -169,7 +169,7 @@ Divide o espaço de busca na metade a cada comparação condicional. O algoritmo
 #include <stdio.h>
 
 // Algoritmo de Busca Binária Eficiente
-int busca_binaria(const int arr[], int tamanho, int alvo) {
+int binary_search(const int arr[], int tamanho, int alvo) {
     int esquerda = 0;
     int direita = tamanho - 1;
 
