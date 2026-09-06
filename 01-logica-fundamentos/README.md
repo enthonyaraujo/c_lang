@@ -275,8 +275,9 @@ Pratique a depuração de erros sutis de lógica e escopo:
 - 💻 Códigos-fonte e soluções disponíveis em [`src/`](src/)
 
 <div class="chapter-nav">
-  <div class="chapter-nav-prev"></div>
+  <div class="chapter-nav-prev">[[README|← Início]]</div>
   <a href="#" class="chapter-nav-top">↑ De volta ao topo</a>
   <div class="chapter-nav-next">[[02-estruturas-de-dados-1/README|02. Estruturas de dados 1 →]]</div>
 </div>
+
 
