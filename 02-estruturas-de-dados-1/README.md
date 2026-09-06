@@ -117,18 +117,19 @@ int main(void) {
 A análise de complexidade quantifica o crescimento de um algoritmo em termos de **tempo de execução** (passos lógicos) e **espaço em memória** (variáveis alocadas) à medida que o tamanho da entrada de dados $n$ cresce para o infinito.
 
 ### Notações de Casos Lógicos
-1.  **Melhor Caso (Best Case / Notação $\Omega$:** A quantidade mínima de operações lógicas necessárias para a execução completa. Representa o cenário ideal (ex: achar o elemento na primeira posição da busca).
-2.  **Caso Médio (Average Case / Notação $\Theta$:** O comportamento estatístico esperado em cenários reais, considerando distribuições probabilísticas equilibradas das entradas de dados.
+1.  **Melhor Caso (Best Case / Notação $\Omega$):** A quantidade mínima de operações lógicas necessárias para a execução completa. Representa o cenário ideal (ex: achar o elemento na primeira posição da busca).
+2.  **Caso Médio (Average Case / Notação $\Theta$):** O comportamento estatístico esperado em cenários reais, considerando distribuições probabilísticas equilibradas das entradas de dados.
 3.  **Pior Caso (Worst Case / Notação $O$ - Big-O):** Representa o limite máximo de tempo ou espaço que o algoritmo demandará no cenário mais desfavorável. É a métrica mais crucial no desenvolvimento de sistemas, pois oferece uma garantia matemática de limite superior.
 
 | Classe de Complexidade | Notação Big-O | Comportamento do Algoritmo                                                          | Exemplo Prático                                         |
 | :--------------------- | :-----------: | :---------------------------------------------------------------------------------- | :------------------------------------------------------ |
-| **Constante**          |    $(O(1)$    | O tempo de execução permanece o mesmo, indiferente ao tamanho de \\(n\\).           | Acesso direto a um índice de vetor.                     |
+| **Constante**          |    $O(1)$     | O tempo de execução permanece o mesmo, indiferente ao tamanho de $n$.               | Acesso direto a um índice de vetor.                     |
 | **Logarítmica**        |  $O(\log n)$  | O problema é dividido pela metade a cada passo executado.                           | Algoritmo de Busca Binária.                             |
-| **Linear**             |    $O(n)$     | O tempo de execução cresce de forma diretamente proporcional ao tamanho de \\(n\\). | Algoritmo de Busca Linear.                              |
+| **Linear**             |    $O(n)$     | O tempo de execução cresce de forma diretamente proporcional ao tamanho de $n$.     | Algoritmo de Busca Linear.                              |
 | **Linearítmica**       | $O(n \log n)$ | Divisão de problemas combinada com percursos lineares sequenciais.                  | Algoritmos eficientes como *Merge Sort* e *Quick Sort*. |
 | **Quadrática**         |   $O(n^2)$    | Loops aninhados que percorrem a totalidade da coleção para cada elemento existente. | Algoritmos de ordenação simples como *Bubble Sort*.     |
-![[complexidade_algoritmos.png|338]]
+
+<img src="assets/complexidade_algoritmos.png" alt="Complexidade dos Algoritmos" width="338" />
 
 ```mermaid
 flowchart TD
@@ -195,7 +196,7 @@ Reorganizam a posição física dos dados dentro de um vetor para satisfazer uma
 
 | Algoritmo          | Complexidade (Pior) | Complexidade (Melhor) | Mecânica Física de Funcionamento                                                                                         |
 | :----------------- | :-----------------: | :-------------------: | :----------------------------------------------------------------------------------------------------------------------- |
-| **Bubble Sort**    |      $(O(n^2)$      |   $O(n)$ (com flag)   | Varre o vetor comparando valores adjacentes e efetuando trocas (*swaps*) de modo a empurrar o maior dado para o fim.     |
+| **Bubble Sort**    |      $O(n^2)$       |   $O(n)$ (com flag)   | Varre o vetor comparando valores adjacentes e efetuando trocas (*swaps*) de modo a empurrar o maior dado para o fim.     |
 | **Selection Sort** |      $O(n^2)$       |       $O(n^2)$        | Varre o vetor localizando o menor elemento geral da sub-lista desordenada e o posiciona no início.                       |
 | **Insertion Sort** |      $O(n^2)$       |        $O(n)$         | Percorre o vetor inserindo cada elemento em sua posição correta dentro de uma sub-lista que já foi previamente ordenada. |
 
