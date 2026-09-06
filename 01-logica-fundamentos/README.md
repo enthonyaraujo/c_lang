@@ -1,12 +1,12 @@
-# 01 - Fundamentos e Lógica de Programação em C
+# Fundamentos e Lógica de Programação em C
 
 Este módulo cobre os pilares essenciais da linguagem C moderna (padrões C17 e C23), desde os tipos primitivos e representação em memória até controle de fluxo e funções.
 
 ---
 
-## 1 - Fundamentos
+## 1 Fundamentos
 
-### Tipos de dados
+### 1.1 Tipos de dados
 
 | Tipo     | Tamanho | Tamanho | Propósito Lógico                                                              | Intervalo Típico (C23 - Complemento de Dois)         |
 | -------- | ------- | ------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -27,9 +27,9 @@ double precisao = 3.14159; // Aloca 8 bytes para precisão dupla
 
 ---
 
-## 2 - Tipos de Operadores
+## 2 Tipos de Operadores
 
-### Aritmética e Incremento
+### 2.1 Aritmética e Incremento
 
 | Tipo | **Operação** |
 | ---- | ------------ |
@@ -39,7 +39,7 @@ double precisao = 3.14159; // Aloca 8 bytes para precisão dupla
 | `++` | Incremento   |
 | `--` | Decremento   |
 
-### Operadores Relacionais
+### 2.2 Operadores Relacionais
 
 | Tipo | Operação         | Exemplo (`x = 5`, `y = 10`) | Avaliação Inteira em C |
 | ---- | ---------------- | --------------------------- | ---------------------- |
@@ -50,7 +50,7 @@ double precisao = 3.14159; // Aloca 8 bytes para precisão dupla
 | `>=` | Maior ou igual a | `x >= 5`                    | `1` (Verdadeiro)       |
 | `<=` | Menor ou igual a | `y <= 10`                   | `1` (Verdadeiro)       |
 
-### Operadores Lógicos
+### 2.3 Operadores Lógicos
 
 | Tipo | Operação         | Comportamento Lógico                                             |
 | ---- | ---------------- | ---------------------------------------------------------------- |
@@ -60,9 +60,9 @@ double precisao = 3.14159; // Aloca 8 bytes para precisão dupla
 
 ---
 
-## 3 - Estruturas Condicionais
+## 3 Estruturas Condicionais
 
-### If, If Else e Else
+### 3.1 If, If Else e Else
 São estruturas de desvio para tomadas de decisão sequenciais e mutuamente exclusivas.
 
 ```c
@@ -73,7 +73,7 @@ if (condicao) {
 }
 ```
 
-### Switch-Case
+### 3.2 Switch-Case
 Escolha direta com base no valor exato de uma variável inteira constante. Exige o comando `break` para interromper o fluxo; caso contrário, a execução continuará nos blocos inferiores (*fall-through*).
 
 ```c
@@ -92,9 +92,9 @@ switch (variavel) {
 
 ---
 
-## 4 - Loops e Repetição
+## 4 Loops e Repetição
 
-### For
+### 4.1 For
 Agrupa de forma organizada a inicialização, teste e o passo de atualização em seu cabeçalho.
 
 _Diferença Pré (`++i`) vs. Pós (`i++`) Incremento:_
@@ -107,7 +107,7 @@ for (int i = 0; i < 5; i++) { // Inicialização; Condição; Passo
 }
 ```
 
-### Loop While (Pré-Testado)
+### 4.2 Loop While (Pré-Testado)
 A condição de parada é testada **antes** de executar o bloco de código interno. Se for falsa no início, o corpo não executa nenhuma vez.
 
 ```c
@@ -119,7 +119,7 @@ while (tentativas > 0) { // Condição de parada
 }
 ```
 
-### Loop Do-While (Pós-Testado)
+### 4.3 Loop Do-While (Pós-Testado)
 O bloco de instruções é executado **obrigatoriamente pelo menos uma vez**, e o teste condicional ocorre **ao final** da iteração.
 
 ```c
@@ -131,7 +131,7 @@ do {
 } while (valor < 1); // Teste de permanência (exige ';' obrigatório ao final)
 ```
 
-### Controle de Fluxo Interno
+### 4.5 Controle de Fluxo Interno
 - `break`: Interrompe e encerra de imediato a execução do loop.
 - `continue`: Aborta o restante das instruções da iteração corrente e salta direto ao passo de incremento/teste.
 
@@ -145,9 +145,9 @@ for (int i = 1; i <= 5; i++) {
 
 ---
 
-## 5 - Vetores e Matrizes
+## 5 Vetores e Matrizes
 
-### Vetores Lineares (Arrays Unidimensionais)
+### 5.1 Vetores Lineares (Arrays Unidimensionais)
 Vetor contíguo e homogêneo armazenado na memória física. Os índices vão estritamente de `0` até `N-1`.
 
 ```c
@@ -164,7 +164,7 @@ for (int i = 0; i < 5; i++) {
 }
 ```
 
-### Matrizes (Bidimensionais)
+### 5.2 Matrizes (Bidimensionais)
 Dispostas de maneira linearizada na memória de acordo com o esquema de **linha principal (row-major order)**. Exige loops aninhados (laço externo fixa a linha corrente e o interno percorre as colunas).
 
 ```c
@@ -185,7 +185,7 @@ for (int l = 0; l < 2; l++) {       // Fixa a linha
 
 ## 6 - Modularização e Funções
 
-### Anatomia de uma Função (Como Implementar)
+### 6.1 Anatomia de uma Função (Como Implementar)
 Funções são **subprogramas** isolados e independentes construídos sob o princípio de **Dividir para Conquistar**. Elas recebem argumentos do chamador, processam as operações internamente e devolvem um resultado final.
 
 Para implementar e usar uma função de forma consistente e segura, deve-se seguir três etapas rígidas:
@@ -220,7 +220,7 @@ _Nota de Atualização (Padrão C23):_ Até o padrão C11, declarar uma função
 
 ---
 
-### Tipos de Funções 
+### 6.2 Tipos de Funções 
 Podemos categorizar qualquer função com base no envio de dados de entrada (**parâmetros**) e na devolução de dados de saída (**retorno**):
 
 | Tipo de Função | Recebe Parâmetro? | Retorna Valor? | Aplicação Lógica Comum |
