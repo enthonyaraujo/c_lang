@@ -361,12 +361,12 @@ void printTree(Node *root) {
 }
 ```
 
-## 3 Percursos
+## 2.4 Percursos
 Existem dois tipos de percursos:
 - Percurso em Largura
 - Percurso em Profundidade
 
-### 3.1 Percurso em Largura
+#### 2.4.1 Percurso em Largura
 O percurso em largura visita os **nós** em cada nível, da esquerda para a direita, antes de prosseguir para o próximo.
 
 ```mermaid
@@ -384,10 +384,10 @@ Sequencia: A, B, C, D e E
 - Nível 0: A
 - Nível 1: B e C
 - Nível 2: D e E
-### 3.2 Percurso em Profundidade
+#### 2.4.2 Percurso em Profundidade
 O percurso em profundidade explora três possíveis casos em cada ramo antes de retroceder. Esta categoria inclui os subtipos **pré-ordem**, **ordem** e **pós-ordem**.
 
-#### 3.2.1 Pré-ordem
+##### 1. Pré-ordem
 Cada nó é processado antes de seus filhos. 
 
 - **Raiz**
@@ -407,7 +407,7 @@ flowchart TD
 ```
 Percursos: **A, B, D, E, C**
 
-#### 3.2.2 Ordem
+##### 2. Ordem
 Processa a subárvore esquerda, o nó atual e, em seguida, a subárvore direita.
 
 - **Subárvore esquerda**
@@ -426,7 +426,7 @@ flowchart TD
     linkStyle default stroke:#888888,stroke-width:1.2px;
 ```
 Percurso: **D, B, E, A, C**
-#### 3.2.3 Pós Ordem
+##### 3 Pós-Ordem
 Acessa o nó atual após suas subárvores.
 
 - **Subárvore esquerda**
@@ -445,7 +445,7 @@ flowchart TD
 ```
 Percurso: **D, E, B, C, A**
 
-#### 3.2.4 Implementação em C 
+##### 2.4.2.1 Implementação em C 
 
 ```c
 void pre_order(Node *root) {
