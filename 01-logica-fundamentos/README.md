@@ -267,7 +267,7 @@ bool verificar_aprovacao(float media) {
 ```
 
 ---
-
+Próximo Capitulo: [[02-estruturas-de-dados-1/README|README]]
 ## Desafios Práticos
 
 Pratique a depuração de erros sutis de lógica e escopo:
