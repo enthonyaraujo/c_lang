@@ -1,6 +1,6 @@
 # Fundamentos e Lógica de Programação em C
 
-Este módulo cobre os pilares essenciais da linguagem C moderna (padrões C17 e C23), desde os tipos primitivos e representação em memória até controle de fluxo e funções.
+Este módulo cobre os pilares essenciais da linguagem C, desde os tipos primitivos e representação em memória até controle de fluxo e funções.
 
 ---
 
