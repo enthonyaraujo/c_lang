@@ -1,4 +1,4 @@
-# Guia de Estruturas de Dados, Ponteiros e Algoritmos em C
+# Ponteiros, Alocação de Memória e Algoritmos em C
 
 Este guia  aborda o agrupamento de estrutura de dados, gerenciamento de memória de baixo nível, análise de algoritmos e as estruturas de dados clássicas essenciais para o desenvolvimento de sistemas robustos e eficientes em C.
 
