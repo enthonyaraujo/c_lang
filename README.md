@@ -1,6 +1,7 @@
-Repositório referente a anotações envolvendo as disciplinas de Algoritmos e Programação e Estruturas de Dados 1 e 2 do Curso de Engenharia de Computação da UFERSA de Pau dos Ferros
+Anotações e práticas das disciplinas de Algoritmos, Programação e Estruturas de Dados (1 e 2) do curso de Engenharia de Computação da UFERSA — Campus Pau dos Ferros.
 
 ---
+
 ##  Mapa de Aprendizado
 
 | Módulo                       | Conteúdo Principal                                                                                   | Teoria                                                  | Prática / Códigos                                                                                                   |
