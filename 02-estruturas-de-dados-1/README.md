@@ -3,9 +3,9 @@
 Este guia  aborda o agrupamento de estrutura de dados, gerenciamento de memória de baixo nível, análise de algoritmos e as estruturas de dados clássicas essenciais para o desenvolvimento de sistemas robustos e eficientes em C.
 
 ---
-## 1 - Agrupamento de Dados com Registros (Structs)
+## 1 Agrupamento de Dados com Registros (Structs)
 
-### Definição e Estrutura Física na Memória
+### 1.1 Definição e Estrutura Física na Memória
 Uma estrutura (**`struct`**) agrupa diversas variáveis de tipos de dados potencialmente distintos sob um único rótulo lógico, alocando-as em um **bloco contíguo de memória física**.
 
 *   **Alinhamento de Memória (*Padding*):** O compilador frequentemente adiciona bytes vazios de preenchimento (*padding*) entre os membros da estrutura para alinhar os dados aos limites físicos da arquitetura do processador (comumente limites de 4 ou 8 bytes), visando otimizar a velocidade de acesso de hardware. Para minimizar o consumo de memória, é uma prática recomendada de engenharia **ordenar os campos da estrutura do tipo de maior tamanho para o menor**.
@@ -43,9 +43,9 @@ int main(void) {
 ```
 
 ---
-## 2 - Ponteiros de Memória e Manipulação de Arquivos
+## 2 Ponteiros de Memória e Manipulação de Arquivos
 
-### Fundamentos e Operações de Ponteiros
+### 2.1 Fundamentos e Operações de Ponteiros
 Um **ponteiro** é uma variável cujo conteúdo é um endereço de memória física que aponta para onde outra variável está armazenada.
 
 *   **Operador de Endereço (`&`):** Extrai a coordenada física (endereço) de uma variável na memória RAM.
@@ -60,7 +60,7 @@ int *p = &x; // 'p' guarda o endereço de 'x'
 
 ---
 
-### Manipulação de Arquivos via Fluxos de Dados
+### 2.2 Manipulação de Arquivos via Fluxos de Dados
 C realiza a manipulação de arquivos por meio de canais de comunicação lógica estruturados pelo tipo de dado abstrato **`FILE*`** (definido no cabeçalho `<stdio.h>`).
 
 | Modo de Abertura | Descrição do Fluxo | Comportamento se o Arquivo Existir | Comportamento se NÃO Existir |
@@ -111,9 +111,9 @@ int main(void) {
 
 ---
 
-## 3 - Introdução à Complexidade de Algoritmos (Notação Big-O)
+## 3 Introdução à Complexidade de Algoritmos (Notação Big-O)
 
-### Conceitos de Complexidade Lógica
+### 3.1 Conceitos de Complexidade Lógica
 A análise de complexidade quantifica o crescimento de um algoritmo em termos de **tempo de execução** (passos lógicos) e **espaço em memória** (variáveis alocadas) à medida que o tamanho da entrada de dados $n$ cresce para o infinito.
 
 ### Notações de Casos Lógicos
@@ -149,9 +149,9 @@ flowchart TD
 ```
 ---
 
-## 4 - Lógica de Algoritmos de Busca e Ordenação
+## 4 Lógica de Algoritmos de Busca e Ordenação
 
-### Algoritmos de Busca
+### 4.1 Algoritmos de Busca
 Servem para inspecionar coleções de dados em busca de um elemento específico.
 
 #### 1. Busca Linear (Varredura Sequencial)
@@ -191,7 +191,7 @@ int binary_search(const int arr[], int tamanho, int alvo) {
 
 ---
 
-### Algoritmos de Ordenação
+### 4.2 Algoritmos de Ordenação
 Reorganizam a posição física dos dados dentro de um vetor para satisfazer uma ordem linear (crescente ou decrescente).
 
 | Algoritmo          | Complexidade (Pior) | Complexidade (Melhor) | Mecânica Física de Funcionamento                                                                                         |
@@ -228,7 +228,7 @@ void bubble_sort(int arr[], int tamanho) {
 
 ---
 
-## 5 - Estruturas de Dados Dinâmicas: Pilhas, Filas e Listas
+## 5 Estruturas de Dados Dinâmicas: Pilhas, Filas e Listas
 
 Estas estruturas são formadas por blocos dinâmicos chamados de **Nós** (*Nodes*), que contêm os dados e apontadores (ponteiros) para associar logicamente a coleção.
 
