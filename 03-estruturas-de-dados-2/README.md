@@ -21,6 +21,7 @@ Uma árvore é uma estrutura de dados não linear e hierárquica composta por **
 São as ligações direcionadas (as setas) que conectam um nó pai ao seu respectivo nó filho.
 
 1. **Fisicamente em C**: Representam um ponteiro guardado dentro da `struct` do pai apontando para o filho.
+
 #### 1.1.4 Folhas (_Leaves_)
 São os nós situados nas extremidades finais da árvore (no exemplo, **`E`, `F`, `G`, `H`, `I`, `J`**).
 
@@ -289,76 +290,6 @@ int main(){
 
     return 0;
 }
-
-// ================================================
-// == As funções aqui abaixo não são importantes ==
-// ==     são apenas para mostrar as árvores     ==
-//=================================================
-
-// calcula quantos níveis a árvore possui
-int treeHeight(Node *root) {
-    if (root == NULL) return 0;
-
-    int leftHeight = treeHeight(root->left);
-    int rightHeight = treeHeight(root->right);
-
-    return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
-}
-
-// posiciona cada nó e suas arestas dentro da matriz de caracteres
-void printTreeRec(Node *root, char **canvas, int width, int x, int y, int offset) {
-    if (root == NULL) return;
-
-    char value[32];
-    snprintf(value, sizeof(value), "%d", root->data);
-
-    // imprime o nó atual com a indentação do nivel
-    int start = x - (int)strlen(value) / 2;
-    for (int i = 0; value[i] != '\0' && start + i < width; i++) {
-        if (start + i >= 0) canvas[y][start + i] = value[i];
-    }
-
-    int nextOffset = offset / 2;
-    if (nextOffset < 2) nextOffset = 2;
-
-    // visita a subarvore direita primeiro
-    if (root->right != NULL) {
-        canvas[y + 1][x + offset / 2] = '\\';
-        printTreeRec(root->right, canvas, width, x + offset, y + 2, nextOffset);
-    }
-
-    /// visita a subarvore esquerda
-    if (root->left != NULL) {
-        canvas[y + 1][x - offset / 2] = '/';
-        printTreeRec(root->left, canvas, width, x - offset, y + 2, nextOffset);
-    }
-}
-
-void printTree(Node *root) {
-    if (root == NULL) return;
-
-    int height = treeHeight(root);
-    int width = 1 << (height + 2);
-    int rows = height * 2 - 1;
-
-    char **canvas = malloc(rows * sizeof(char *));
-    for (int i = 0; i < rows; i++) {
-        canvas[i] = malloc((width + 1) * sizeof(char));
-        memset(canvas[i], ' ', width);
-        canvas[i][width] = '\0';
-    }
-
-    printTreeRec(root, canvas, width, width / 2, 0, width / 4);
-
-    for (int i = 0; i < rows; i++) {
-        int end = width - 1;
-        while (end >= 0 && canvas[i][end] == ' ') end--;
-        canvas[i][end + 1] = '\0';
-        printf("%s\n", canvas[i]);
-        free(canvas[i]);
-    }
-    free(canvas);
-}
 ```
 
 ## 2.4 Percursos
@@ -470,5 +401,214 @@ void pos_order(Node *root) {
         pos_order(root->right);
         printf("%d ", root->key);
     }
+}
+```
+
+## 3 Árvore Binária de Busca
+
+A Árvore Binária de Busca tem característica para ser otimizada para busca. Em geral, todos os **nós** a esquerda da raiz são menores, caso contrario, são maiores.
+```mermaid
+flowchart TD
+    50((50)) --- 30((30))
+    50 --- 70((70))
+
+    30 --- 20((20))
+    30 --- 40((40))
+
+    70 --- 60((60))
+    70 --- 80((80))
+
+    classDef default fill:#ffffff,stroke:#333333,stroke-width:1.5px,color:#000000,font-weight:bold;
+    linkStyle default stroke:#888888,stroke-width:1.2px;
+```
+
+*Portanto, uma BST é uma árvore binária que obedece a seguinte regra: dado um nó com chave A, todo nó à esquerda possui chave menor que A e todo nó à direita possui chave maior que A. Algumas BSTs permitem chaves duplicadas, no entanto vamos abordar o caso em que todas as chaves são diferentes.*
+
+### 3.1 Operações com BST
+As principais operações com as BST são `inserção`, `busca` e `removação`.
+
+#### 3.1.1 Inserção
+A inserção em uma BST ocorre nas folhas, por exemplo se quisermos adicionar um nó 65 na árvore mostrada anteriormente:
+```
+Maior que 50, vai para direita
+Menor que 70, vai para esquerda
+Maior que 60, vai para direita
+```
+
+```mermaid
+flowchart TD
+    50((50)) --- 30((30))
+    50 --- 70((70))
+
+    30 --- 20((20))
+    30 --- 40((40))
+
+    70 --- 60((60))
+    70 --- 80((80))
+    
+    60 --- 65((65))
+
+    classDef default fill:#ffffff,stroke:#333333,stroke-width:1.5px,color:#000000,font-weight:bold;
+    linkStyle default stroke:#888888,stroke-width:1.2px;
+```
+#### 3.1.2 Busca
+A busca ocorre percorrendo a árvore conforme a regra geral. Iniciando da raiz, percorremos os nós seguindo um caminho da direita ou esquerda conforma o valor da chave. Se a chave procurada é maior que a chave do nó atual, buscamos na direita, caso contrário na esquerda.
+
+#### 3.1.3 Remoção
+A remoção em uma BST requer alguns casos:
+
+- O nó a ser removido é uma folha: retire da árvore sem compaixão.
+- O nó a ser removido possui somente um filho: o filho substitui o pai.
+- O nó a ser removido possui dois filhos: o nó é substituído pelo seu sucessor em ordem ou predecessor. O sucessor/predecessor é removido.
+
+Removendo o **nó** 65 do caso anterior: 
+```mermaid
+flowchart TD
+    50((50)) --- 30((30))
+    50 --- 70((70))
+
+    30 --- 20((20))
+
+    70 --- 60((60))
+    70 --- 80((80))
+    
+    60 --- 65((65))
+
+    classDef default fill:#ffffff,stroke:#333333,stroke-width:1.5px,color:#000000,font-weight:bold;
+    linkStyle default stroke:#888888,stroke-width:1.2px;
+```
+Como 65 é uma folha, basta remover
+```mermaid
+flowchart TD
+    50((50)) --- 30((30))
+    50 --- 70((70))
+
+    30 --- 20((20))
+
+    70 --- 60((60))
+    70 --- 80((80))
+
+    classDef default fill:#ffffff,stroke:#333333,stroke-width:1.5px,color:#000000,font-weight:bold;
+    linkStyle default stroke:#888888,stroke-width:1.2px;
+```
+Agora se quisermos remover o 30, como ele só tem uma filho, o filho substituira o pai:
+
+```mermaid
+flowchart TD
+    50((50)) --- 20((20))
+    50 --- 70((70))
+
+    70 --- 60((60))
+    70 --- 80((80))
+
+    classDef default fill:#ffffff,stroke:#333333,stroke-width:1.5px,color:#000000,font-weight:bold;
+    linkStyle default stroke:#888888,stroke-width:1.2px;
+```
+Para remover o 70, o algoritmo deve escolher qual filho substituirá o 70 (como o 70 tem dois filhos) se vai ser o filho menor ou maior.
+
+### 3.2 Implementação em C
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// estrutura do nó
+typedef struct node
+{
+    int data; // dado
+    struct node *left; // nó apontando para o filho a esquerda
+    struct node *right; // nó apontando para o filho a direita
+} Node;
+
+
+// função para criar um nó
+Node *create_node(int key){
+    Node *new_node = malloc(sizeof(Node)); // alocando memoria para o nó
+    new_node->data = key; // o dado recebe a key
+    new_node->left = new_node->right = NULL; // como não tem filhos, os filhos são NULL
+
+    return new_node;
+}
+
+// função de inserção do nó
+Node *insert_node(Node *root, int key){
+    if (root == NULL) // se a raiz for nula, o proximo nó a ser inserido é raiz
+        return create_node(key);
+    if (root->data == key) //se for igual a raiz, ja é raiz
+        return root;
+    if (root->data < key) // se a chave for maior que a raiz vai para direita
+        root->right = insert_node(root->right, key);
+    else //caso contrario ela é menor e vai para esquerda
+        root->left = insert_node(root->left, key);
+
+    return root;
+}
+
+// função para buscar um nó
+Node *search_node(Node *root, int key){
+    if (root == NULL || root->data == key) // se a raiz for nula ou igual a chave, ja é raiz ou não existe
+        return root;
+    
+    if (root->data < key) // se a chave for maior que a raiz, deve-se procurar na direita
+        return search_node(root->right, key);
+    
+    return search_node(root->left, key); // caso nenhum if seja atendido deve procurar na esquerda
+}
+
+// função para encontrar o sucessor (menor valor da subárvore direita)
+Node *get_successor(Node *node){
+    if (node == NULL || node->right == NULL){ // se o nó ou filho direito for nulo, não tem sucessor na subárvore
+        return NULL;
+    }
+
+    // vai para subarvore direita
+    Node *current = node->right;
+
+    while (current->left != NULL){ // vai para a esquerda até achar o menor valor
+        current = current->left;
+    }
+    return current; // retorna o nó sucessor
+}
+
+// função de remover nó
+Node *remove_node(Node *root, int key){
+    if (root == NULL) // se for nula, não existe
+        return root;
+    if (root->data < key) // se a chave for maior que a raiz, removemos o nó da direita
+        root->right = remove_node(root->right, key);
+    else if (root->data > key) // se a chave for menor que a raiz, removemos da esquerda
+        root->left = remove_node(root->left, key);
+    else { // achou o nó a ser removido
+        if (root->left == NULL) { // se não tem filho à esquerda, retorna o da direita
+            Node *temp = root->right;
+            free(root);
+            return temp;
+        }
+        if (root->right == NULL) { // se não tem filho à direita, retorna o da esquerda
+            Node *temp = root->left;
+            free(root);
+            return temp;
+        }
+        
+        // caso com dois filhos: pega o sucessor (menor da subárvore direita)
+        Node *succ = get_successor(root);
+        root->data = succ->data; // copia o dado do sucessor para a raiz
+        root->right = remove_node(root->right, succ->data); // remove o sucessor da direita
+    }
+    return root; // retorna a raiz atualizada
+}
+
+int main(){
+    // 30 10 5 1 2
+    
+    Node *root = NULL; // ponteiro da raiz da árvore
+    root = insert_node(root, 30);  
+    root = insert_node(root, 10);   
+    root = insert_node(root, 5);   
+    root = insert_node(root, 1); 
+    root = insert_node(root, 2);
+
+    return 0;
 }
 ```
