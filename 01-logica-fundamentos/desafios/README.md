@@ -15,9 +15,9 @@ Coleção de desafios de depuração em C. Cada um deles contém **erros sutis d
 
 ---
 
-### Obsidian Links:
-- [[desafio-01-media-fantasma|Desafio 1 - O Cálculo de Média Fantasma]]
-- [[desafio-02-curto-circuito|Desafio 2 - A Armadilha do Curto-Circuito]]
-- [[desafio-03-painel-motorista|Desafio 3 - O Painel do Motorista Confuso]]
-- [[desafio-04-desconto-invisivel|Desafio 4 - O Desconto Invisível (Funções e Escopo)]]
+### Navegação Rápida:
+- [Desafio 1 - O Cálculo de Média Fantasma](desafio-01-media-fantasma.md)
+- [Desafio 2 - A Armadilha do Curto-Circuito](desafio-02-curto-circuito.md)
+- [Desafio 3 - O Painel do Motorista Confuso](desafio-03-painel-motorista.md)
+- [Desafio 4 - O Desconto Invisível (Funções e Escopo)](desafio-04-desconto-invisivel.md)
 

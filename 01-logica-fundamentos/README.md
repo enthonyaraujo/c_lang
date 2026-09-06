@@ -30,6 +30,7 @@ double precisao = 3.14159; // Aloca 8 bytes para precisão dupla
 ## 2 - Tipos de Operadores
 
 ### Aritmética e Incremento
+
 | Tipo | **Operação** |
 | ---- | ------------ |
 | `+`  | Soma         |
@@ -39,6 +40,7 @@ double precisao = 3.14159; // Aloca 8 bytes para precisão dupla
 | `--` | Decremento   |
 
 ### Operadores Relacionais
+
 | Tipo | Operação         | Exemplo (`x = 5`, `y = 10`) | Avaliação Inteira em C |
 | ---- | ---------------- | --------------------------- | ---------------------- |
 | `==` | Igual a          | `x == y`                    | `0` (Falso)            |
@@ -49,6 +51,7 @@ double precisao = 3.14159; // Aloca 8 bytes para precisão dupla
 | `<=` | Menor ou igual a | `y <= 10`                   | `1` (Verdadeiro)       |
 
 ### Operadores Lógicos
+
 | Tipo | Operação         | Comportamento Lógico                                             |
 | ---- | ---------------- | ---------------------------------------------------------------- |
 | `&&` | AND (E lógico)   | É **true** quando todas as condições forem **true**.             |
@@ -268,6 +271,6 @@ bool verificar_aprovacao(float media) {
 ## Desafios Práticos
 
 Pratique a depuração de erros sutis de lógica e escopo:
-- 📌 [[desafios/README|Acessar Desafios de Lógica de Programação]] (ou consulte [desafios/README.md](desafios/README.md))
+- 📌 [Acessar Desafios de Lógica de Programação](desafios/README.md)
 - 💻 Códigos-fonte e soluções disponíveis em [`src/`](src/)
 
