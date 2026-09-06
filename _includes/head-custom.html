@@ -68,10 +68,12 @@
   .navbar-container {
     max-width: 1012px;
     margin: 0 auto;
+    padding: 0.85rem 1.25rem;
     padding: 0.75rem 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1.5rem;
     gap: 1rem;
   }
 
@@ -95,6 +97,7 @@
   .navbar-nav {
     display: flex;
     align-items: center;
+    gap: 1.25rem;
     gap: 1rem;
   }
 
@@ -103,6 +106,8 @@
     font-weight: 500;
     color: var(--text-color) !important;
     text-decoration: none !important;
+    opacity: 0.8;
+    transition: opacity 0.15s ease, color 0.15s ease;
     opacity: 0.85;
     padding: 0.4rem 0.6rem;
     border-radius: 6px;
@@ -118,10 +123,12 @@
   .navbar-right {
     display: flex;
     align-items: center;
+    margin-left: auto; /* Garante que o switch fica no extremo lado direito */
     gap: 0.5rem;
     margin-left: auto;
   }
 
+  /* Switch Modo Claro / Escuro (From Uiverse.io by Galahhad) */
   /* Switch Modo Claro / Escuro (From Uiverse.io by Galahhad) com touch target acessível */
   .switch {
     display: inline-flex;
@@ -179,6 +186,17 @@
     transform: translate(0);
   }
 
+  @media (max-width: 680px) {
+    .navbar-container {
+      padding: 0.75rem 1rem;
+    }
+    .navbar-nav {
+      display: none;
+    }
+    .slider {
+      transform: scale(0.9);
+      transform-origin: right center;
+    }
   /* Botão Hambúrguer para Telas Móveis */
   .navbar-toggle {
     display: none;
@@ -294,6 +312,7 @@
     border-color: var(--border-color) !important;
   }
 
+  /* Tabelas */
   /* Tabelas Responsivas */
   .markdown-body table {
     display: block !important;
@@ -303,6 +322,7 @@
     -webkit-overflow-scrolling: touch !important;
     border-collapse: collapse !important;
     border-spacing: 0 !important;
+    width: 100% !important;
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
   }
@@ -335,6 +355,7 @@
     font-size: 0.92rem;
   }
 
+  /* Código Inline e Blocos de Código */
   /* Código Inline e Blocos de Código Responsivos */
   .markdown-body code {
     background-color: var(--inline-code-bg) !important;
@@ -344,10 +365,12 @@
     word-break: break-word;
   }
 
+  .markdown-body pre {
   .markdown-body pre,
   .markdown-body .highlight pre {
     background-color: var(--code-bg) !important;
     border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
     border-radius: 8px !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
@@ -452,8 +475,11 @@
     opacity: 0.75;
   }
 
+  /* Imagens e Embeds Obsidian */
   /* Imagens e Embeds Obsidian Responsivos */
   .markdown-body img {
+    max-width: 100%;
+    height: auto;
     max-width: 100% !important;
     height: auto !important;
     border-radius: 6px;
@@ -467,11 +493,16 @@
     text-underline-offset: 2px;
   }
 
+  /* Diagramas Mermaid */
   /* Diagramas Mermaid Responsivos (Sem corte na rolagem à esquerda) */
   .mermaid-container {
+    display: flex;
+    justify-content: center;
     display: block;
     background-color: var(--code-bg);
     border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1.25rem;
     border-radius: 8px;
     padding: 1rem;
     margin: 1.5rem 0;
@@ -578,6 +609,9 @@
       securityLevel: 'loose'
     });
 
+    const mermaidDivs = document.querySelectorAll('.language-mermaid');
+    mermaidDivs.forEach(div => {
+      const code = div.querySelector('code') ? div.querySelector('code').textContent : div.textContent;
     const mermaidCodes = document.querySelectorAll('.language-mermaid, pre.mermaid');
     mermaidCodes.forEach(el => {
       const code = el.querySelector('code') ? el.querySelector('code').textContent : el.textContent;
@@ -587,6 +621,7 @@
       pre.className = 'mermaid';
       pre.textContent = code.trim();
       container.appendChild(pre);
+      div.parentNode.replaceChild(container, div);
 
       const targetToRemove = (el.tagName.toLowerCase() === 'code' && el.parentElement && el.parentElement.tagName.toLowerCase() === 'pre')
         ? el.parentElement
