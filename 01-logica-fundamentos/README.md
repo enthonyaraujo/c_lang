@@ -271,8 +271,8 @@ bool verificar_aprovacao(float media) {
 ## Desafios Práticos
 
 Pratique a depuração de erros sutis de lógica e escopo:
-- 📌 [Acessar Desafios de Lógica de Programação](desafios/README.md)
-- 💻 Códigos-fonte e soluções disponíveis em [`src/`](src/)
+- [Acessar Desafios de Lógica de Programação](desafios/README.md)
+- Códigos-fonte e soluções disponíveis em [`src/`](src/)
 
 <div class="chapter-nav">
   <div class="chapter-nav-prev">[[README|← Início]]</div>
