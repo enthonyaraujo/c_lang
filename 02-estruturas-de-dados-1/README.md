@@ -582,5 +582,8 @@ int main(void) {
 }
 ```
 
----
-Próximo Capítulo:  [[03-estruturas-de-dados-2/README|README]]
+<div class="chapter-nav">
+  <div class="chapter-nav-prev">[[01-logica-fundamentos/README|← 01. Lógica de Programação]]</div>
+  <a href="#" class="chapter-nav-top">↑ De volta ao topo</a>
+  <div class="chapter-nav-next">[[03-estruturas-de-dados-2/README|03. Estruturas de dados 2 →]]</div>
+</div>
