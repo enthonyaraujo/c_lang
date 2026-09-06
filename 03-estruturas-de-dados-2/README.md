@@ -612,3 +612,9 @@ int main(){
     return 0;
 }
 ```
+
+<div class="chapter-nav">
+  <div class="chapter-nav-prev">[[02-estruturas-de-dados-1/README|← 02. Estruturas de dados 1]]</div>
+  <a href="#" class="chapter-nav-top">↑ De volta ao topo</a>
+  <div class="chapter-nav-next"></div>
+</div>
