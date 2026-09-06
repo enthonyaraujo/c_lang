@@ -68,11 +68,11 @@
   .navbar-container {
     max-width: 1012px;
     margin: 0 auto;
-    padding: 0.85rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .navbar-brand {
@@ -83,6 +83,9 @@
     letter-spacing: -0.02em;
     white-space: nowrap;
     transition: opacity 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .navbar-brand:hover {
@@ -92,7 +95,7 @@
   .navbar-nav {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .navbar-nav .nav-item {
@@ -100,28 +103,37 @@
     font-weight: 500;
     color: var(--text-color) !important;
     text-decoration: none !important;
-    opacity: 0.8;
-    transition: opacity 0.15s ease, color 0.15s ease;
+    opacity: 0.85;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease;
   }
 
   .navbar-nav .nav-item:hover {
     opacity: 1;
     color: var(--link-color) !important;
+    background-color: var(--inline-code-bg);
   }
 
   .navbar-right {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Garante que o switch fica no extremo lado direito */
+    gap: 0.5rem;
+    margin-left: auto;
   }
 
-  /* Switch Modo Claro / Escuro (From Uiverse.io by Galahhad) */
+  /* Switch Modo Claro / Escuro (From Uiverse.io by Galahhad) com touch target acessível */
   .switch {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     position: relative;
     user-select: none;
     -webkit-user-select: none;
+    min-width: 44px;
+    min-height: 44px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .checkbox {
@@ -167,17 +179,94 @@
     transform: translate(0);
   }
 
-  @media (max-width: 680px) {
-    .navbar-container {
-      padding: 0.75rem 1rem;
-    }
-    .navbar-nav {
-      display: none;
-    }
-    .slider {
-      transform: scale(0.9);
-      transform-origin: right center;
-    }
+  /* Botão Hambúrguer para Telas Móveis */
+  .navbar-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .navbar-toggle:hover,
+  .navbar-toggle:focus-visible {
+    background-color: var(--inline-code-bg);
+    outline: none;
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: var(--heading-color);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+
+  .navbar-toggle[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .navbar-toggle[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .navbar-toggle[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Gaveta / Dropdown do Menu Mobile */
+  .mobile-nav {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    background-color: var(--navbar-bg);
+    border-bottom: 0 solid var(--border-color);
+    transition: max-height 0.28s ease, opacity 0.2s ease, border-bottom-width 0.2s ease;
+  }
+
+  .mobile-nav.is-open {
+    max-height: 300px;
+    opacity: 1;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem 1rem 1rem;
+    gap: 0.35rem;
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+    border-radius: 6px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .mobile-nav-item:hover,
+  .mobile-nav-item:active {
+    background-color: var(--inline-code-bg);
+    color: var(--link-color) !important;
   }
 
   /* Conteúdo Principal Markdown */
@@ -205,11 +294,15 @@
     border-color: var(--border-color) !important;
   }
 
-  /* Tabelas */
+  /* Tabelas Responsivas */
   .markdown-body table {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
     border-collapse: collapse !important;
     border-spacing: 0 !important;
-    width: 100% !important;
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
   }
@@ -219,6 +312,9 @@
     color: var(--heading-color) !important;
     font-weight: 600 !important;
     border: 1px solid var(--border-color) !important;
+    padding: 0.65rem 0.85rem !important;
+    min-width: 110px;
+    font-size: 0.92rem;
   }
 
   .markdown-body table tr {
@@ -234,32 +330,70 @@
     background-color: inherit !important;
     border: 1px solid var(--border-color) !important;
     color: var(--text-color) !important;
+    padding: 0.65rem 0.85rem !important;
+    min-width: 110px;
+    font-size: 0.92rem;
   }
 
-  /* Código Inline e Blocos de Código */
+  /* Código Inline e Blocos de Código Responsivos */
   .markdown-body code {
     background-color: var(--inline-code-bg) !important;
     color: var(--code-text) !important;
     padding: 0.2em 0.4em !important;
     border-radius: 6px !important;
+    word-break: break-word;
   }
 
-  .markdown-body pre {
+  .markdown-body pre,
+  .markdown-body .highlight pre {
     background-color: var(--code-bg) !important;
     border: 1px solid var(--border-color) !important;
-    border-radius: 6px !important;
+    border-radius: 8px !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 1rem !important;
+    max-width: 100%;
   }
 
   .markdown-body pre code {
     background-color: transparent !important;
     color: var(--text-color) !important;
     padding: 0 !important;
+    word-break: normal;
   }
 
   .markdown-body blockquote {
     color: var(--text-color) !important;
     border-left: 4px solid var(--border-color) !important;
     opacity: 0.9;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+  }
+
+  /* Fórmulas KaTeX Responsivas */
+  .katex-display {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0.5rem 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-width: 100%;
+  }
+
+  /* Barras de Rolagem Sutis para Telas de Toque e Mobile */
+  .mermaid-container::-webkit-scrollbar,
+  .markdown-body table::-webkit-scrollbar,
+  .markdown-body pre::-webkit-scrollbar,
+  .katex-display::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+  }
+
+  .mermaid-container::-webkit-scrollbar-thumb,
+  .markdown-body table::-webkit-scrollbar-thumb,
+  .markdown-body pre::-webkit-scrollbar-thumb,
+  .katex-display::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
   }
 
   /* Syntax Highlighting no Modo Escuro (GitHub Dark / Rouge) */
@@ -318,10 +452,10 @@
     opacity: 0.75;
   }
 
-  /* Imagens e Embeds Obsidian */
+  /* Imagens e Embeds Obsidian Responsivos */
   .markdown-body img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100% !important;
+    height: auto !important;
     border-radius: 6px;
     margin: 0.75rem 0;
   }
@@ -333,20 +467,97 @@
     text-underline-offset: 2px;
   }
 
-  /* Diagramas Mermaid */
+  /* Diagramas Mermaid Responsivos (Sem corte na rolagem à esquerda) */
   .mermaid-container {
-    display: flex;
-    justify-content: center;
+    display: block;
     background-color: var(--code-bg);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 1.25rem;
+    border-radius: 8px;
+    padding: 1rem;
     margin: 1.5rem 0;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
   }
 
   .mermaid-container .mermaid {
+    display: inline-block;
+    text-align: left;
+    min-width: fit-content;
+    max-width: none;
     background: transparent !important;
+  }
+
+  .mermaid-container svg {
+    max-width: none !important;
+    height: auto;
+  }
+
+  /* Regras de Mídia para Mobile (Android/iOS) e Tablets */
+  @media (max-width: 768px) {
+    .navbar-container {
+      padding: 0.65rem 1rem;
+      gap: 0.75rem;
+    }
+
+    .navbar-nav {
+      display: none;
+    }
+
+    .navbar-toggle {
+      display: inline-flex;
+    }
+
+    .markdown-body {
+      font-size: 15px !important;
+      line-height: 1.6 !important;
+    }
+
+    .markdown-body h1 {
+      font-size: 1.55rem !important;
+      line-height: 1.25 !important;
+      word-break: break-word;
+    }
+
+    .markdown-body h2 {
+      font-size: 1.3rem !important;
+      line-height: 1.3 !important;
+      word-break: break-word;
+    }
+
+    .markdown-body h3 {
+      font-size: 1.1rem !important;
+      line-height: 1.35 !important;
+      word-break: break-word;
+    }
+
+    .markdown-body table th,
+    .markdown-body table td {
+      font-size: 0.82rem !important;
+      padding: 0.5rem 0.65rem !important;
+      min-width: 95px;
+    }
+
+    .markdown-body pre,
+    .markdown-body .highlight pre {
+      font-size: 0.82rem !important;
+      padding: 0.75rem !important;
+    }
+
+    .site-footer {
+      padding: 2rem 1rem !important;
+      margin-top: 2.5rem !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .navbar-toggle {
+      display: none !important;
+    }
+
+    .mobile-nav {
+      display: none !important;
+    }
   }
 </style>
 
@@ -367,16 +578,22 @@
       securityLevel: 'loose'
     });
 
-    const mermaidDivs = document.querySelectorAll('.language-mermaid');
-    mermaidDivs.forEach(div => {
-      const code = div.querySelector('code') ? div.querySelector('code').textContent : div.textContent;
+    const mermaidCodes = document.querySelectorAll('.language-mermaid, pre.mermaid');
+    mermaidCodes.forEach(el => {
+      const code = el.querySelector('code') ? el.querySelector('code').textContent : el.textContent;
       const container = document.createElement('div');
       container.className = 'mermaid-container';
       const pre = document.createElement('pre');
       pre.className = 'mermaid';
       pre.textContent = code.trim();
       container.appendChild(pre);
-      div.parentNode.replaceChild(container, div);
+
+      const targetToRemove = (el.tagName.toLowerCase() === 'code' && el.parentElement && el.parentElement.tagName.toLowerCase() === 'pre')
+        ? el.parentElement
+        : el;
+      if (targetToRemove && targetToRemove.parentNode) {
+        targetToRemove.parentNode.replaceChild(container, targetToRemove);
+      }
     });
 
     if (document.querySelectorAll('.mermaid').length > 0) {
@@ -532,6 +749,36 @@
         const nextTheme = toggle.checked ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', nextTheme);
         localStorage.setItem('theme', nextTheme);
+      });
+    }
+
+    // 4. Controle do menu mobile (hambúrguer)
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+        mobileNav.classList.toggle('is-open', !isExpanded);
+      });
+
+      // Fechar menu ao clicar em qualquer item
+      mobileNav.querySelectorAll('.mobile-nav-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.remove('is-open');
+        });
+      });
+
+      // Fechar menu ao clicar fora
+      document.addEventListener('click', function(e) {
+        if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+          if (mobileNav.classList.contains('is-open')) {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            mobileNav.classList.remove('is-open');
+          }
+        }
       });
     }
   });
