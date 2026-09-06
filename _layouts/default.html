@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "pt-BR" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <header class="site-navbar">
+      <div class="navbar-container">
+        <a href="{{ "/" | relative_url }}" class="navbar-brand">
+          Linguagem C
+        </a>
+
+        <nav class="navbar-nav">
+          <a href="{{ "/" | relative_url }}" class="nav-item">Início</a>
+          <a href="{{ "/01-logica-fundamentos/" | relative_url }}" class="nav-item">01. Fundamentos</a>
+          <a href="{{ "/02-estruturas-de-dados-1/" | relative_url }}" class="nav-item">02. Estruturas</a>
+        </nav>
+
+        <div class="navbar-right">
+          <!-- From Uiverse.io by Galahhad -->
+          <label class="switch" aria-label="Alternar modo claro e escuro">
+            <input type="checkbox" id="theme-toggle" class="checkbox">
+            <div class="slider"></div>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="container-lg px-3 my-4 markdown-body">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container-lg px-3">
+        <p>Linguagem C • <a href="https://github.com/enthonyaraujo/c_lang" target="_blank" rel="noopener">Repositório no GitHub</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

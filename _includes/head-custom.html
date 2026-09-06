@@ -1,4 +1,4 @@
-<!-- Configuração de Tema Dark / White -->
+<!-- Configuração de Tema Dark / White e Navbar -->
 <script>
   (function() {
     const savedTheme = localStorage.getItem('theme');
@@ -19,15 +19,13 @@
     --heading-color: #1f2328;
     --link-color: #0969da;
     --border-color: #d0d7de;
+    --navbar-bg: rgba(255, 255, 255, 0.92);
     --code-bg: #f6f8fa;
     --inline-code-bg: rgba(175, 184, 193, 0.2);
     --code-text: #24292f;
     --table-header-bg: #f6f8fa;
     --table-row-bg: #ffffff;
     --table-row-alt: #f6f8fa;
-    --btn-bg: #f6f8fa;
-    --btn-border: #d0d7de;
-    --btn-text: #24292f;
   }
 
   [data-theme="dark"] {
@@ -36,35 +34,155 @@
     --heading-color: #f0f6fc;
     --link-color: #58a6ff;
     --border-color: #30363d;
+    --navbar-bg: rgba(13, 17, 23, 0.92);
     --code-bg: #161b22;
     --inline-code-bg: rgba(110, 118, 129, 0.4);
     --code-text: #e6edf3;
     --table-header-bg: #161b22;
     --table-row-bg: #0d1117;
     --table-row-alt: #161b22;
-    --btn-bg: #21262d;
-    --btn-border: #363b42;
-    --btn-text: #f0f6fc;
   }
 
+  /* Reset e Estrutura Global */
   html, body {
+    margin: 0 !important;
+    padding: 0 !important;
     background-color: var(--bg-color) !important;
     color: var(--text-color) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
+  /* Barra de Navegação (Navbar) */
+  .site-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--navbar-bg);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .navbar-container {
+    max-width: 1012px;
+    margin: 0 auto;
+    padding: 0.85rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--heading-color) !important;
+    text-decoration: none !important;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+  }
+
+  .navbar-brand:hover {
+    opacity: 0.85;
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .navbar-nav .nav-item {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+    opacity: 0.8;
+    transition: opacity 0.15s ease, color 0.15s ease;
+  }
+
+  .navbar-nav .nav-item:hover {
+    opacity: 1;
+    color: var(--link-color) !important;
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Garante que o switch fica no extremo lado direito */
+  }
+
+  /* Switch Modo Claro / Escuro (From Uiverse.io by Galahhad) */
+  .switch {
+    display: inline-block;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .checkbox {
+    display: none;
+  }
+
+  .slider {
+    width: 60px;
+    height: 30px;
+    background-color: lightgray;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: 4px solid transparent;
+    transition: .3s;
+    box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
+    cursor: pointer;
+  }
+
+  .slider::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transform: translateX(-30px);
+    border-radius: 20px;
+    transition: .3s;
+    box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+  }
+
+  .checkbox:checked ~ .slider::before {
+    transform: translateX(30px);
+    box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+  }
+
+  .checkbox:checked ~ .slider {
+    background-color: #2196F3;
+  }
+
+  .checkbox:active ~ .slider::before {
+    transform: translate(0);
+  }
+
+  @media (max-width: 680px) {
+    .navbar-container {
+      padding: 0.75rem 1rem;
+    }
+    .navbar-nav {
+      display: none;
+    }
+    .slider {
+      transform: scale(0.85);
+      transform-origin: right center;
+    }
+  }
+
+  /* Conteúdo Principal Markdown */
   .markdown-body {
     background-color: transparent !important;
     color: var(--text-color) !important;
-  }
-
-  /* Título principal do cabeçalho */
-  .markdown-body > h1:first-child a {
-    color: var(--heading-color) !important;
-    text-decoration: none;
-  }
-  .markdown-body > h1:first-child a:hover {
-    text-decoration: underline;
   }
 
   .markdown-body h1,
@@ -188,67 +306,30 @@
   [data-theme="dark"] .highlight .nd { color: #ffa657 !important; }
   [data-theme="dark"] .highlight .p { color: #c9d1d9 !important; }
 
-  /* Botão de Alternar Modo Dark / Light */
-  #theme-toggle-btn {
-    position: fixed;
-    top: 18px;
-    right: 20px;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 20px;
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    border: 1px solid var(--btn-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    transition: all 0.2s ease;
-  }
-
-  #theme-toggle-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-  }
-
-  @media (max-width: 600px) {
-    #theme-toggle-btn {
-      top: 12px;
-      right: 12px;
-      padding: 6px 10px;
-      font-size: 11px;
-    }
+  /* Rodapé */
+  .site-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 2.5rem 0;
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.75;
   }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.createElement('button');
-    btn.id = 'theme-toggle-btn';
-    btn.setAttribute('aria-label', 'Alternar modo escuro e claro');
-    
-    function updateButton() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      if (currentTheme === 'dark') {
-        btn.innerHTML = '☀️ Modo Claro';
-      } else {
-        btn.innerHTML = '🌙 Modo Escuro';
-      }
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      toggle.checked = (currentTheme === 'dark');
+
+      toggle.addEventListener('change', function() {
+        const nextTheme = toggle.checked ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('theme', nextTheme);
+      });
     }
-
-    btn.addEventListener('click', function() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('theme', nextTheme);
-      updateButton();
-    });
-
-    updateButton();
-    document.body.appendChild(btn);
   });
 </script>
