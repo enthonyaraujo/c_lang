@@ -1,4 +1,4 @@
-Repositório estruturado para o aprendizado da linguagem C.
+Repositório referente a anotações envolvendo as disciplinas de Algoritmos e Programação e Estruturas de Dados 1 e 2 do Curso de Engenharia de Computação da UFERSA de Pau dos Ferros
 
 ---
 ##  Mapa de Aprendizado
