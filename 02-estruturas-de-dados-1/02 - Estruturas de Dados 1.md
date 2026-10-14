@@ -128,8 +128,7 @@ A análise de complexidade quantifica o crescimento de um algoritmo em termos de
 | **Linear**             |    $O(n)$     | O tempo de execução cresce de forma diretamente proporcional ao tamanho de $n$.     | Algoritmo de Busca Linear.                              |
 | **Linearítmica**       | $O(n \log n)$ | Divisão de problemas combinada com percursos lineares sequenciais.                  | Algoritmos eficientes como *Merge Sort* e *Quick Sort*. |
 | **Quadrática**         |   $O(n^2)$    | Loops aninhados que percorrem a totalidade da coleção para cada elemento existente. | Algoritmos de ordenação simples como *Bubble Sort*.     |
-
-<img src="assets/complexidade_algoritmos.png" alt="Complexidade dos Algoritmos" width="338" />
+![Complexidade dos Algoritmos|338](assets/complexidade_algoritmos.png)
 
 ```mermaid
 flowchart TD
@@ -581,9 +580,3 @@ int main(void) {
     return 0;
 }
 ```
-
-<div class="chapter-nav">
-  <div class="chapter-nav-prev">[[01-logica-fundamentos/README|← 01. Lógica de Programação]]</div>
-  <a href="#" class="chapter-nav-top">↑ De volta ao topo</a>
-  <div class="chapter-nav-next">[[03-estruturas-de-dados-2/README|03. Estruturas de dados 2 →]]</div>
-</div>
